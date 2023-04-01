@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+  memorymysql:
+    command: --init-file /init.sql
+    container_name: memorymysql
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?set it in .env}
+      NETWORK_ACCESS: internal
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+    restart: always
+    tmpfs: /var/lib/mysql
+    volumes:
+      - ./init.sql:/init.sql
+networks:
+  default:
+    name: nginx-proxy
+    external: true
