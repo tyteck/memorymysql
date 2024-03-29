@@ -1,4 +1,4 @@
-version: "3.3"
+name: memorymysql
 services:
   memorymysql:
     command: --init-file /init.sql
