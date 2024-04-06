@@ -17,5 +17,5 @@ services:
       - ./init.sql:/init.sql
 networks:
   default:
-    name: nginx-proxy
+    name: local
     external: true
